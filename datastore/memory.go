@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/moficodes/bookdata/api/loader"
+	"github.com/matt-FFFFFF/bookdata-api/loader"
 )
 
 type Books struct {
@@ -20,6 +20,14 @@ func (b *Books) Initialize() {
 	}
 	defer file.Close()
 	b.Store = loader.LoadData(file)
+}
+
+func (b *Books) GetAllBooks(limit, skip int) *[]*loader.BookData {
+	if limit == 0 || limit > len(*b.Store) {
+		limit = len(*b.Store)
+	}
+	ret := (*b.Store)[skip:limit]
+	return &ret
 }
 
 func (b *Books) SearchAuthor(author string, ratingOver, ratingBelow float64, limit, skip int) *[]*loader.BookData {
