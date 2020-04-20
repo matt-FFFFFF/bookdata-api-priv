@@ -34,7 +34,7 @@ FROM scratch
 COPY --from=builder /go/bin/bookdata-api /
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/group /etc/group
-#COPY assets/books.csv /assets/books.csv
+COPY assets/books.csv /assets/books.csv
 
 EXPOSE 8080
 
