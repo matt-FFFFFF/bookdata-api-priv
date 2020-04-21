@@ -6,6 +6,7 @@
         "ms-vscode.go",
         "ms-azuretools.vscode-docker"
     ],
+    "appPort": 8080,
     "runArgs": [
         "--cap-add=SYS_PTRACE",
         "--security-opt",

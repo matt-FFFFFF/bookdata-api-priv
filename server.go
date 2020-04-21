@@ -38,5 +38,5 @@ func main() {
 	api.HandleFunc("/book/isbn/{isbn}", searchByISBN).Methods(http.MethodGet)
 	api.HandleFunc("/book/isbn/{isbn}", deleteByISBN).Methods(http.MethodDelete)
 	api.HandleFunc("/book", createBook).Methods(http.MethodPost)
-	log.Fatalln(http.ListenAndServe("localhost:8080", r))
+	log.Fatalln(http.ListenAndServe(":8080", r))
 }
