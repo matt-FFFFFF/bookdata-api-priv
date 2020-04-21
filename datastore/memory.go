@@ -1,8 +1,6 @@
 package datastore
 
 import (
-	"log"
-	"os"
 	"strings"
 
 	"github.com/matt-FFFFFF/bookdata-api/loader"
@@ -12,7 +10,7 @@ type Books struct {
 	Store *[]*loader.BookData `json:"store"`
 }
 
-func (b *Books) Initialize() {
+/* func (b *Books) Initialize() {
 	filename := "./assets/books.csv"
 	file, err := os.Open(filename)
 	if err != nil {
@@ -20,7 +18,7 @@ func (b *Books) Initialize() {
 	}
 	defer file.Close()
 	b.Store = loader.LoadData(file)
-}
+} */
 
 func (b *Books) GetAllBooks(limit, skip int) *[]*loader.BookData {
 	if limit == 0 || limit > len(*b.Store) {
