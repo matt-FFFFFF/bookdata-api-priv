@@ -3,9 +3,9 @@
 ## Challenge 1
 
 Outside of the success criteria, make sure to highlight the interface used by the server.
-The interface is defined in ```datastore/datastore.go``` and the ```server.go``` create a var when it starts up.
+The interface is defined in ```datastore/datastore.go``` and the ```server.go``` create a var (books) when it starts up.
 
-In the init function, the books var gets assigned to an pointer to an empty datastore.Books struct.
+In the init function, the books var gets assigned to a pointer to an empty datastore.Books struct.
 This is allowed because, in ```datastore/memory.go``` the Books type implements all the methods of the interface.
 
 This means that the datastore can change, as long as it implements the requried method signature.
