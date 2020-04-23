@@ -24,4 +24,17 @@ This way we can pass in the current time when we call defer. When defer runs we 
 
 ## Challenge 3
 
+Suggest the teams split the tasks into pairs.
 
+There will probably be a lot of code repetition. Once answer to this is the ```Filter``` func in ```memory.go```.
+The first parameter to this is the in-memory store itself.
+The second paramater is an inline function that takes in a (pointer to a) single item from the book store ```*loader.BookData```, then performs some comparison with the supplied API request and returns a bool.
+This way we can filter the store in any way we like without lots of repetition (for loops).
+
+It may be that the teams do not come up with this concept, especially if they are not experienced in go or development in general.
+Point this out to them but it is by no means essential to pass the challenge.
+
+## Challenge 4
+
+Key thing is to use multiple stages in the Dockerfile.
+A builder container, with the tools required to build the binary, and a run container that the binary is copied from.
