@@ -2,6 +2,9 @@
 
 ## Challenge 1
 
+Firstly, makes sure the group has read the primer on ```net/http```. It's linked on the challenge 1 page.
+<https://matt-ffffff.github.io/golang-hack-beginner/net-http.html>
+
 Outside of the success criteria, make sure to highlight the interface used by the server.
 The interface is defined in ```datastore/datastore.go``` and the ```server.go``` create a var (books) when it starts up.
 
