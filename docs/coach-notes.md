@@ -8,10 +8,10 @@ Firstly, makes sure the group has read the primer on ```net/http```. It's linked
 Outside of the success criteria, make sure to highlight the interface used by the server.
 The interface is defined in ```datastore/datastore.go``` and the ```server.go``` create a var (books) when it starts up.
 
-In the init function, the books var gets assigned to a pointer to an empty datastore.Books struct.
-This is allowed because, in ```datastore/memory.go``` the Books type implements all the methods of the interface.
+In the init function, the books var gets assigned to a pointer to an empty ```datastore.Books``` struct.
+This is allowed because, in ```datastore/memory.go```, the Books type implements all the methods of the interface.
 
-This means that the datastore can change, as long as it implements the requried method signature.
+This means that the datastore can change, as long as it implements the required method signature.
 
 Point the group towards <https://medium.com/golangspec/interfaces-in-go-part-i-4ae53a97479c> for further reading if interested.
 
@@ -20,10 +20,11 @@ Point the group towards <https://medium.com/golangspec/interfaces-in-go-part-i-4
 ### On defer
 
 The critical thing to convey here is that defer is a function that is run at the end of the current function, wherever it exits.
-This is tidier than try-catch-finally, as there are no braces to worry about.
+This is tidier than try-catch-finally, as there are no braces to worry about and it doesn't matter how the function exits.
 
-Although the function is executed when the current function exits, the values passed into the defer are set a the time of the defer call.
-This way we can pass in the current time when we call defer. When defer runs we can perform a simple ```time.Since``` calculation.
+Although the function is executed when the current function exits, the values passed into the defer are set a the time of the defer statement.
+This way we can pass in the current time when we call defer.
+When defer runs we can perform a simple ```time.Since``` calculation on the now in-the-past ```time.Now()``` value.
 
 ## Challenge 3
 
