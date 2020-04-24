@@ -19,8 +19,8 @@ Point the group towards <https://medium.com/golangspec/interfaces-in-go-part-i-4
 The critical thing to convey here is that defer is a function that is run at the end of the current function, wherever it exits.
 This is tidier than try-catch-finally, as there are no braces to worry about.
 
-Although the function is executed when the current function exits, the vlaues passed into the defer are set a the time of the defer.
-This way we can pass in the current time when we call defer. When defer runs we can perform a simple time.Since calculation.
+Although the function is executed when the current function exits, the values passed into the defer are set a the time of the defer call.
+This way we can pass in the current time when we call defer. When defer runs we can perform a simple ```time.Since``` calculation.
 
 ## Challenge 3
 
@@ -38,3 +38,5 @@ Point this out to them but it is by no means essential to pass the challenge.
 
 Key thing is to use multiple stages in the Dockerfile.
 A builder container, with the tools required to build the binary, and a run container that the binary is copied from.
+
+The build stage should use the same base as the dev container, ensuring consistency between dev and build.
