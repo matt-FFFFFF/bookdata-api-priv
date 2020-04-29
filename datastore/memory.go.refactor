@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/matt-FFFFFF/bookdata-api/loader"
+	"github.com/matt-FFFFFF/bookstore/loader"
 )
 
 type Books struct {

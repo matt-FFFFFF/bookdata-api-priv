@@ -1,6 +1,6 @@
 package datastore
 
-import "github.com/matt-FFFFFF/bookdata-api/loader"
+import "github.com/matt-FFFFFF/bookstore/loader"
 
 type BookStore interface {
 	Initialize()
