@@ -4,38 +4,51 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/matt-FFFFFF/bookstore"
 )
 
+type api struct {
+	Version string `json:"version"`
+}
+
+var apiInfo = api{
+	Version: "1.0.0",
+}
+
+// Handler is the HTTP handler for the bookstore
 type Handler struct {
 	BookService bookstore.BookService
+	AddressPort string
 }
 
 func (h *Handler) ServeHTTP() error {
 	r := mux.NewRouter()
 	log.Println("bookdata api")
 	api := r.PathPrefix("/api/v1").Subrouter()
-	api.HandleFunc("/", h.ApiInfo).Methods(http.MethodGet)
-	api.HandleFunc("/books", h.Books).Methods(http.MethodGet)
+	api.HandleFunc("/", h.apiInfo).Methods(http.MethodGet)
+	api.HandleFunc("/books", h.books).Methods(http.MethodGet)
 	/* 	api.HandleFunc("/books/authors/{author}", searchByAuthor).Methods(http.MethodGet)
 	   	api.HandleFunc("/books/book-name/{bookName}", searchByBookName).Methods(http.MethodGet)
 	   	api.HandleFunc("/book/isbn/{isbn}", searchByISBN).Methods(http.MethodGet)
 	   	api.HandleFunc("/book/isbn/{isbn}", deleteByISBN).Methods(http.MethodDelete)
 	   	api.HandleFunc("/book", createBook).Methods(http.MethodPost) */
-	return http.ListenAndServe(":8080", r)
+	return http.ListenAndServe(h.AddressPort, r)
 }
 
-func (h *Handler) ApiInfo(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) apiInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"api_version": "1.0.0"}`))
+	ai, err := json.Marshal(apiInfo)
+	if err != nil {
+		log.Println("could not marshal api info")
+	}
+	w.Write(ai)
 	return
 }
 
-func (h *Handler) Books(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) books(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//limit, err := getLimitParam(r)
 	/* 	if err != nil {
@@ -53,19 +66,4 @@ func (h *Handler) Books(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write(b)
 	return
-}
-
-func getLimitParam(r *http.Request) (int, error) {
-	limit := 0
-	queryParams := r.URL.Query()
-	l := queryParams.Get("limit")
-	if l != "" {
-		val, err := strconv.Atoi(l)
-		if err != nil {
-			return limit, err
-		}
-
-		limit = val
-	}
-	return limit, nil
 }
